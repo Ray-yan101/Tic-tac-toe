@@ -1,9 +1,9 @@
 #include <stdio.h>
  
-// Globally declared 2D-array
+
 char board[3][3];
  
-// Function to initialize the game board
+
 void initializeBoard()
 {
     for (int i = 0; i < 3; i++)
@@ -31,7 +31,7 @@ void initializeBoard()
     printf("\n\n\n");
 }
  
-// Function shows the game board
+
 void showBoard(int x, int y)
 {
     printf("\n\n\t  ");
@@ -51,7 +51,7 @@ void showBoard(int x, int y)
     printf("\n\n\n");
 }
  
-// Function to update the game board
+
 int updateBoard(int cell, char playerSign)
 {
     int row = (cell - 1) / 3;
@@ -75,35 +75,34 @@ int updateBoard(int cell, char playerSign)
     return isValid;
 }
  
-// Function to check the winner of the game
+
 int checkWinner(char sg)
 {
-    // check all rows
+    
     if (board[0][0] == sg && board[0][1] == sg && board[0][2] == sg ||
       board[1][0] == sg && board[1][1] == sg && board[1][2] == sg ||
       board[2][0] == sg && board[2][1] == sg && board[2][2] == sg)
     {
         return 1;
       }
-      // check all columns
+      
     else if (board[0][0] == sg && board[1][0] == sg && board[2][0] == sg ||
            board[0][1] == sg && board[1][1] == sg && board[2][1] == sg ||
            board[0][2] == sg && board[1][2] == sg && board[2][2] == sg)
     {
         return 1;
     }
-    // check both diagonals
+   
     else if (board[0][0] == sg && board[1][1] == sg && board[2][2] == sg ||
            board[0][2] == sg && board[1][1] == sg && board[2][0] == sg)
     {
         return 1;
     }
  
-    // There is no winner
     return 0;
 }
  
-// Start your game from here
+
 void playTicTacToe()
 {
     int gameResult = 0;
@@ -113,18 +112,18 @@ void playTicTacToe()
  
     char playerSign = ' ';
  
-    // start playing the game
+    
     while (!gameResult && playCount < 9)
     {
         if (playCount % 2 == 0)
         {
-            // player 1
+           
             printf("\nPlayer 1 [ X ] : ");
             playerSign = 'X';
         }
         else
         {
-            // player 2
+          
             printf("\nPlayer 2 [ O ] : ");
             playerSign = 'O';
         }
@@ -132,11 +131,11 @@ void playTicTacToe()
         if (cell > 0 && cell < 10)
         {
             updationResult = updateBoard(cell, playerSign);
-            // if updation is possible
+           
             if (updationResult)
             {
                 gameResult = checkWinner(playerSign);
-                // print the winner of the game
+                
                 if (gameResult)
                 {
                     printf("\t *** Player %d Won!! ***\n", playerSign == 'X' ? 1 : 2);
